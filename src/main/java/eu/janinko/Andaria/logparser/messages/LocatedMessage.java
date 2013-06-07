@@ -1,8 +1,7 @@
 package eu.janinko.Andaria.logparser.messages;
 
-import java.util.Calendar;
-
 import eu.janinko.Andaria.logparser.MessageType;
+import java.util.Calendar;
 
 public class LocatedMessage extends Message {
 	int posX, posY, posZ;

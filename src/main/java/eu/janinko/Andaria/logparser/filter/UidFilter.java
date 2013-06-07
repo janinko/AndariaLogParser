@@ -1,9 +1,8 @@
 package eu.janinko.Andaria.logparser.filter;
 
-import java.util.Set;
-
 import eu.janinko.Andaria.logparser.MessageFilter;
 import eu.janinko.Andaria.logparser.messages.Message;
+import java.util.Set;
 
 public class UidFilter implements MessageFilter {
 	

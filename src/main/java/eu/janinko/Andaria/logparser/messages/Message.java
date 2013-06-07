@@ -1,9 +1,6 @@
 package eu.janinko.Andaria.logparser.messages;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import eu.janinko.Andaria.logparser.MessageType;
-
+import java.util.Calendar;
 
 public class Message {
 	protected Calendar datetime;
@@ -12,7 +9,7 @@ public class Message {
 
 	public Message(Calendar dt, String m, MessageType t){
 		datetime = (Calendar) dt.clone(); 
-		message = new String(m);
+		message = m;
 		type = t;
 	}
 	

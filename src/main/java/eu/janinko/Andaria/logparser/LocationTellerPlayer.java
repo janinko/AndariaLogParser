@@ -1,15 +1,14 @@
 package eu.janinko.Andaria.logparser;
 
-import eu.janinko.Andaria.logparser.parsers.Parser;
+import eu.janinko.Andaria.logparser.messages.LocatedMessage;
 import eu.janinko.Andaria.logparser.model.Player;
+import eu.janinko.Andaria.logparser.parsers.Parser;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
-
-import eu.janinko.Andaria.logparser.messages.LocatedMessage;
 
 public class LocationTellerPlayer extends Player {
 	private Player player;
@@ -60,7 +59,7 @@ public class LocationTellerPlayer extends Player {
 			
 			Set<Player> players = p.getSender().database.getPlayers();
 
-			Set<LocationTellerPlayer> moji = new HashSet<LocationTellerPlayer>();
+			Set<LocationTellerPlayer> moji = new HashSet<>();
 			
 			for(Player pl : players){
 				if(pl.getUid() == 0x307fd ||

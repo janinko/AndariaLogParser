@@ -1,12 +1,7 @@
 package eu.janinko.Andaria.logparser.model;
 
-import eu.janinko.Andaria.logparser.model.Account;
-import eu.janinko.Andaria.logparser.model.MessageReceiver;
-import java.util.ArrayList;
-
-import eu.janinko.Andaria.logparser.messages.LocatedMessage;
 import eu.janinko.Andaria.logparser.messages.Message;
-
+import java.util.ArrayList;
 
 public class Player implements MessageReceiver {
 	protected String name;
@@ -19,7 +14,7 @@ public class Player implements MessageReceiver {
 		this.name = name;
 		this.uid = uid;
 		this.acc = acc;
-		this.history = new ArrayList<Message>();
+		this.history = new ArrayList<>();
 	}
 	public Player(String name, Account acc){
 		this(name, -1, acc);

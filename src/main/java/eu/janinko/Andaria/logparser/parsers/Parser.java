@@ -2,6 +2,9 @@ package eu.janinko.Andaria.logparser.parsers;
 import eu.janinko.Andaria.logparser.InvalidPlayersState;
 import eu.janinko.Andaria.logparser.MessageSender;
 import eu.janinko.Andaria.logparser.MessageType;
+import eu.janinko.Andaria.logparser.messages.LocatedMessage;
+import eu.janinko.Andaria.logparser.messages.Message;
+import eu.janinko.Andaria.logparser.messages.TargetedCommand;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,10 +13,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import eu.janinko.Andaria.logparser.messages.LocatedMessage;
-import eu.janinko.Andaria.logparser.messages.Message;
-import eu.janinko.Andaria.logparser.messages.TargetedCommand;
 
 
 public class Parser {

@@ -1,15 +1,14 @@
 package eu.janinko.Andaria.logparser;
 
-import eu.janinko.Andaria.logparser.parsers.Parser;
+import eu.janinko.Andaria.logparser.filter.UidFilter;
 import eu.janinko.Andaria.logparser.model.Player;
+import eu.janinko.Andaria.logparser.parsers.Parser;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
-
-import eu.janinko.Andaria.logparser.filter.UidFilter;
 
 public class LogParser {
 	static SimpleDateFormat sdf =
@@ -18,7 +17,7 @@ public class LogParser {
 	
 	public static void main(String args[]){
 		String filename = null;
-		HashSet<Integer> uids = new HashSet<Integer>();
+		HashSet<Integer> uids = new HashSet<>();
 		Calendar from = null;
 		Calendar to = null;
 		for(int i = 0; i < args.length; i++){
@@ -83,7 +82,7 @@ public class LogParser {
 		parser.stop();
 		
 		Set<Player> players = parser.getSender().database.getPlayers();
-		Set<LocationTellerPlayer> moji = new HashSet<LocationTellerPlayer>();
+		Set<LocationTellerPlayer> moji = new HashSet<>();
 		for(Player pl : players){
 			if(uids.contains(pl.getUid())){
 				moji.add(new LocationTellerPlayer(pl));

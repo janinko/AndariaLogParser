@@ -1,14 +1,11 @@
 package eu.janinko.Andaria.logparser;
 
-import eu.janinko.Andaria.logparser.model.Player;
+import eu.janinko.Andaria.logparser.messages.Message;
 import eu.janinko.Andaria.logparser.model.Account;
+import eu.janinko.Andaria.logparser.model.Player;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
-
-import eu.janinko.Andaria.logparser.messages.Message;
 
 
 
@@ -41,9 +38,9 @@ public class MessageSender implements Runnable {
 		//virtualPlayersBox = new HashMap<String, HashSet<Player>>();
 		//virtualPlayers = new HashMap<String, Player>();
 		
-		accounts = new HashMap<String, Account>();
+		accounts = new HashMap<>();
 		
-		inputQueue = new ConcurrentLinkedQueue<PlayersFunctionCall>();
+		inputQueue = new ConcurrentLinkedQueue<>();
 
 		//unknownName = new HashSet<Player>();
 		//unknownUid = new HashSet<Player>();
@@ -315,7 +312,7 @@ public class MessageSender implements Runnable {
 	}
 
 	public void print() {
-		HashSet<Player> players = new HashSet<Player>();
+		HashSet<Player> players = new HashSet<>();
 		//players.addAll(byName.values());
 		//players.addAll(byUid.values());
 		//players.addAll(unknownUid);

@@ -1,9 +1,7 @@
 package eu.janinko.Andaria.logparser.model;
 
-import eu.janinko.Andaria.logparser.model.MessageReceiver;
-import java.util.HashSet;
-
 import eu.janinko.Andaria.logparser.messages.Message;
+import java.util.HashSet;
 
 public class Account implements MessageReceiver {
 	String name;
@@ -11,7 +9,7 @@ public class Account implements MessageReceiver {
 	
 	public Account(String name){
 		this.name = name;
-		players = new HashSet<Player>();
+		players = new HashSet<>();
 	}	
 	
 	public void addPlayer(Player p){

@@ -1,7 +1,7 @@
 package eu.janinko.Andaria.logparser;
 
-import eu.janinko.Andaria.logparser.model.Player;
 import eu.janinko.Andaria.logparser.model.Account;
+import eu.janinko.Andaria.logparser.model.Player;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -13,9 +13,9 @@ public class PlayersDB {
 	private Map<String, Ucet> accs;
 	
 	public PlayersDB(){
-		jmena = new HashMap<String, Jmeno>();
-		uids = new HashMap<Integer, RealnaPostava>();
-		accs = new HashMap<String, Ucet>();
+		jmena = new HashMap<>();
+		uids = new HashMap<>();
+		accs = new HashMap<>();
 	}
 	
 	public Player getPlayer(String name, Integer uid, String acc){
@@ -124,7 +124,7 @@ public class PlayersDB {
 	}
 
 	public Set<Player> getPlayers() {
-		HashSet<Player> ps = new HashSet<Player>();
+		HashSet<Player> ps = new HashSet<>();
 		
 		for(Jmeno j : jmena.values()){
 			for(RealnaPostava rp : j.postavy){
@@ -155,7 +155,7 @@ class Jmeno{
 	
 	Jmeno(String jmeno){
 		this.jmeno = jmeno;
-		postavy = new HashSet<RealnaPostava>();
+		postavy = new HashSet<>();
 	}
 
 	void addPostava(RealnaPostava p) {
@@ -187,7 +187,7 @@ class Ucet implements Comparable<Ucet>{
 	
 	Ucet(String jmeno){
 		this.jmeno = jmeno;
-		postavy = new HashSet<RealnaPostava>();
+		postavy = new HashSet<>();
 		a = new Account(jmeno);
 	}
 	
@@ -242,7 +242,7 @@ class RealnaPostava implements Postava{
 	Player p;
 	
 	RealnaPostava(){
-		jmena = new HashSet<String>();
+		jmena = new HashSet<>();
 		p = new Player(null);
 	}
 

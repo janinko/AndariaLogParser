@@ -1,10 +1,9 @@
 package eu.janinko.Andaria.logparser.tests;
 
+import eu.janinko.Andaria.logparser.PlayersDB;
+import eu.janinko.Andaria.logparser.model.Player;
 import static org.junit.Assert.*;
 import org.junit.Test;
-
-import eu.janinko.Andaria.logparser.model.Player;
-import eu.janinko.Andaria.logparser.PlayersDB;
 
 public class PlayersDBTest {
 
