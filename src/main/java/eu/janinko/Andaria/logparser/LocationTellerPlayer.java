@@ -2,8 +2,9 @@ package eu.janinko.Andaria.logparser;
 
 import eu.janinko.Andaria.logparser.messages.LocatedMessage;
 import eu.janinko.Andaria.logparser.model.Player;
-import eu.janinko.Andaria.logparser.parsers.Parser;
+import eu.janinko.Andaria.logparser.parsers.MainParser;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -54,7 +55,8 @@ public class LocationTellerPlayer extends Player {
 	
 	public static void main(String args[]){
 		try {
-			Parser p = new Parser("sphere2012-04-06:201.log");
+			MainParser p = new MainParser(new FileReader("sphere2012-04-06:201.log"));
+			p.start();
 			p.parse();
 			
 			Set<Player> players = p.getSender().database.getPlayers();

@@ -2,7 +2,8 @@ package eu.janinko.Andaria.logparser;
 
 import eu.janinko.Andaria.logparser.filter.UidFilter;
 import eu.janinko.Andaria.logparser.model.Player;
-import eu.janinko.Andaria.logparser.parsers.Parser;
+import eu.janinko.Andaria.logparser.parsers.MainParser;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -60,9 +61,10 @@ public class LogParser {
 			System.err.println("Musíš specifikovat dokdy. ( --to )");
 			System.exit(1);
 		}
-		Parser parser = null;
+		MainParser parser = null;
 		try {
-			parser = new Parser(filename);
+			parser = new MainParser(new FileReader(filename));
+			parser.start();
 		} catch (Exception e) {
 			System.err.println("Chyba otevirani souboru.");
 			System.exit(1);
