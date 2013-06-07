@@ -75,9 +75,9 @@ public class SphereLineParser implements Parser{
 			pos++;
 		}
 		String name = sb.toString();
-		log.wl = log.wl.substring(pos);pos = 0;
+		log.wl.substring(pos);pos = 0;
 		if(log.wl.matches(" Says (UNICODE ('[A-Z]{3}'|'') ){0,1}'.*")){
-			log.wl = log.wl.replaceFirst(" Says (UNICODE '[A-Z]{3}' ){0,1}'", "");
+			log.wl.replaceFirst(" Says (UNICODE '[A-Z]{3}' ){0,1}'", "");
 		}else{
 			log.unknownLine("parseSaysLine"); return;
 		}
@@ -97,7 +97,7 @@ public class SphereLineParser implements Parser{
 			pos++;
 		}
 		String message = sb.toString();
-		log.wl = log.wl.substring(pos);pos = 0;
+		log.wl.substring(pos);pos = 0;
 
 		if(log.wl.matches(" mode=[0-9]")){
 			sender.sendMessage(name, null,null, new Message(c,message,MessageType.PlayerSays));
@@ -123,7 +123,7 @@ public class SphereLineParser implements Parser{
 	Matcher match_clAMOUNTCOMMAND = Pattern.compile("uid=0[0-9a-f]+ \\([^)]*\\) \\[amount=[0-9]+\\] to '.*'=[01]").matcher("");
 	private void parseCommandsLine() {
 		if(log.wl.charAt(0) == '\''){
-			log.wl = log.wl.substring(1);
+			log.wl.substring(1);
 		}else{
 			log.unknownLine("parseSaysLine"); return;
 		}
@@ -131,35 +131,35 @@ public class SphereLineParser implements Parser{
 		MessageType type;
 		boolean typeb;
 		if(log.wl.contains("commands")){
-			acc = log.getUntil("' commands ");
-			log.wl = log.wl.substring(10);
+			acc = log.wl.getUntil("' commands ");
+			log.wl.substring(10);
 			type = MessageType.Command;
 			typeb=false;
 		}else{
-			acc = log.getUntil("' tweak ");//TODO odlisit command a tweak?
-			log.wl = log.wl.substring(7);
+			acc = log.wl.getUntil("' tweak ");//TODO odlisit command a tweak?
+			log.wl.substring(7);
 			type = MessageType.Tweak;
 			typeb=true;
 		}
 		String command;
 		if(match_clSIMPLECOMMAND.reset(log.wl).matches()){
-			command = log.wl.substring(1).replaceFirst("'=[01]$", "");
+			command = log.wl.toString().substring(1).replaceFirst("'=[01]$", "");
 			sender.sendMessage(null, null, acc, new Message(c,command,type));
 		}else if(match_clUIDMMAND.reset(log.wl).matches()){
-			log.wl=log.wl.substring(4);
-			String uid = log.getUntil(" (");
-			log.wl=log.wl.substring(1);
-			String name = log.getUntil(") ");
-			command=log.wl.substring(5).replaceFirst("'=[01]$", "");
+			log.wl.substring(4);
+			String uid = log.wl.getUntil(" (");
+			log.wl.substring(1);
+			String name = log.wl.getUntil(") ");
+			command=log.wl.toString().substring(5).replaceFirst("'=[01]$", "");
 			sender.sendMessage(null, null, acc, new TargetedCommand(c,command,Integer.parseInt(uid,16),name,0,typeb));
 		}else if(match_clAMOUNTCOMMAND.reset(log.wl).matches()){
-			log.wl=log.wl.substring(4);
-			String uid = log.getUntil(" (");
-			log.wl=log.wl.substring(1);
-			String name = log.getUntil(") ");
-			log.wl=log.wl.substring(9);
-			String amount = log.getUntil("] ");
-			command=log.wl.substring(5).replaceFirst("'=[01]$", "");
+			log.wl.substring(4);
+			String uid = log.wl.getUntil(" (");
+			log.wl.substring(1);
+			String name = log.wl.getUntil(") ");
+			log.wl.substring(9);
+			String amount = log.wl.getUntil("] ");
+			command=log.wl.toString().substring(5).replaceFirst("'=[01]$", "");
 			sender.sendMessage(null, null, acc, new TargetedCommand(c,command,Integer.parseInt(uid,16),name,Integer.parseInt(amount),typeb));
 		}else{
 			log.unknownLine("parseSaysLine"); return;

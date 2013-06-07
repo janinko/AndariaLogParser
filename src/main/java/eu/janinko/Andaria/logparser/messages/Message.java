@@ -4,17 +4,17 @@ import java.util.Calendar;
 
 public class Message {
 	protected Calendar datetime;
-	protected String message;
+	protected CharSequence message;
 	protected MessageType type;
 
-	public Message(Calendar dt, String m, MessageType t){
+	public Message(Calendar dt, CharSequence m, MessageType t){
 		datetime = (Calendar) dt.clone(); 
 		message = m;
 		type = t;
 	}
 	
 	public String getMessage(){
-		return message;
+		return message.toString();
 	}
 
 	public Calendar getDateTime(){

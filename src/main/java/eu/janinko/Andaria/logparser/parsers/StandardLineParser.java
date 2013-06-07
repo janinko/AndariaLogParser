@@ -42,62 +42,60 @@ public class StandardLineParser implements Parser{
 			// TODO
 		}else if(match_stlCOMMON.reset(log.wl).matches()){
 			if(match_stlMAJITEL.reset(log.wl).matches()){
-				log.wl = log.wl.replaceFirst("\\(majitel\\) ", ""); // TODO: WA
+				log.wl.replaceFirst("\\(majitel\\) ", ""); // TODO: WA
 			}
-			String name = log.getUntil(" (");
+			String name = log.wl.getUntil(" (");
 			if(match_stlPOSXY.reset(log.wl).matches()){
-				log.wl = log.wl.substring(1);
-				String uid = log.getUntil("/");
-				String posX = log.getUntil(",");
-				String posY = log.getUntil(")");
+				log.wl.substring(1);
+				String uid = log.wl.getUntil("/");
+				String posX = log.wl.getUntil(",");
+				String posY = log.wl.getUntil(")");
 				parseStandartLinePreparsed(name, uid, posX, posY, "0", null);
 			}else if(match_stlPOSXYZ.reset(log.wl).matches()){
-				log.wl = log.wl.substring(1);
-				String uid = log.getUntil("/");
-				String posX = log.getUntil(",");
-				String posY = log.getUntil(",");
-				String posZ = log.getUntil(")");
+				log.wl.substring(1);
+				String uid = log.wl.getUntil("/");
+				String posX = log.wl.getUntil(",");
+				String posY = log.wl.getUntil(",");
+				String posZ = log.wl.getUntil(")");
 				parseStandartLinePreparsed(name, uid, posX, posY, posZ, null);
 			}else if(match_stlJUSTUID.reset(log.wl).matches()){
-				log.wl = log.wl.substring(1);
-				String uid = log.getUntil(")");
+				log.wl.substring(1);
+				String uid = log.wl.getUntil(")");
 				parseStandartLinePreparsed(name, uid, null, null, null, null);
 			}else if(match_stlJUSTACC.reset(log.wl).matches()){
-				log.wl = log.wl.substring(1);
-				String acc = log.getUntil(")");
+				log.wl.substring(1);
+				String acc = log.wl.getUntil(")");
 				String posX = null, posY = null, posZ = null;
 				if(match_stlJUSTPOSXY.reset(log.wl).matches()){
-					log.wl = log.wl.substring(1);
-					posX = log.getUntil(",");
-					posY = log.wl;
-					log.wl = "";
+					log.wl.substring(1);
+					posX = log.wl.getUntil(",");
+					posY = log.wl.rest();
 				}else if(match_stlJUSTPOSXYZ.reset(log.wl).matches()){
-					log.wl = log.wl.substring(1);
-					posX = log.getUntil(",");
-					posY = log.getUntil(",");
-					posZ = log.wl;
-					log.wl = "";
+					log.wl.substring(1);
+					posX = log.wl.getUntil(",");
+					posY = log.wl.getUntil(",");
+					posZ = log.wl.rest();
 				}
 				parseStandartLinePreparsed(name, null, posX, posY, posZ, acc);
 			}else{
 				log.unknownLine("parseStandartLine Standart");
 			}
 		}else if(match_stlJUSTUIDANDACC.reset(log.wl).matches()){
-			String name = log.getUntil(" 0");
+			String name = log.wl.getUntil(" 0");
 			if(match_stlUIDANDACC.reset(log.wl).matches()){
-				String uid = log.getUntil(" ");
-				log.wl = log.wl.substring(1);
-				String acc = log.getUntil(") ");
+				String uid = log.wl.getUntil(" ");
+				log.wl.substring(1);
+				String acc = log.wl.getUntil(") ");
 				parseStandartLinePreparsed(name, uid, null, null, null, acc);
 			}else{
 				log.unknownLine("parseStandartLine Uid");
 			}
 		}else if(match_stlCASTSPECIAL.reset(log.wl).matches()){
-			String name = log.getUntil(" - Cast");
-			log.wl = log.wl.substring(14);
+			String name = log.wl.getUntil(" - Cast");
+			log.wl.substring(14);
 			String spelnum;
 			if(log.wl.matches("[0-9a-f]+")){
-				spelnum = log.wl;
+				spelnum = log.wl.toString();
 			}else if(log.wl.equals("s_lightning_new")){
 				spelnum = "s_lightning_new";
 			}else if(log.wl.equals("s_flamestrike_new")){
@@ -119,7 +117,7 @@ public class StandardLineParser implements Parser{
 		}else if(log.wl.startsWith("### Mnozeni koni - ")){
 			// TODO
 		}else if(log.wl.contains("pouziva Spojovac na")){
-			String name = log.getUntil("(");
+			String name = log.wl.getUntil("(");
 			// TODO
 		}else if(log.wl.startsWith("AUTORESTOCK: ")){
 			// TODO
@@ -162,11 +160,11 @@ public class StandardLineParser implements Parser{
 			posZ = Integer.parseInt(pZ,10);
 		}
 
-		if(log.wl.charAt(0) == ':') log.wl = log.wl.substring(1);
+		if(log.wl.charAt(0) == ':') log.wl.substring(1);
 		if(log.wl.charAt(0) != ' '){
 			log.unknownLine("parseStandartLinePreparsed notspace"); return;
 		}
-		log.wl = log.wl.substring(1);
+		log.wl.substring(1);
 
 		if(log.wl.startsWith("Drp_Itm ")){
 			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
@@ -270,13 +268,13 @@ public class StandardLineParser implements Parser{
 			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Incognito: ")){
-			log.wl = log.wl.substring(11);
+			log.wl.substring(11);
 			MessageType t;
 			if(log.wl.charAt(0) == 'z' && log.wl.charAt(1) == ' ' ){
-				log.wl = log.wl.substring(2);
+				log.wl.substring(2);
 				t = MessageType.IncognitoReset;
 			}else if(log.wl.charAt(0) == 'n' && log.wl.charAt(1) == 'a' && log.wl.charAt(2) == ' ' ){
-				log.wl = log.wl.substring(3);
+				log.wl.substring(3);
 				t = MessageType.IncognitoSet;
 			}else{
 				log.unknownLine("parseStandartLinePreparsed Incognito"); return;

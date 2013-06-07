@@ -80,28 +80,28 @@ public class MainParser implements Parser{
 			parseTime();
 			
 			if(line.startsWith(" POZOR ")){
-				log.wl = log.wl.substring(7);
+				log.wl.substring(7);
 				messageLine.parseLine("POZOR");
 			}else if(log.wl.startsWith(" ")){
-				log.wl = log.wl.substring(1);
+				log.wl.substring(1);
 				standardLine.parseLine();
 			}else if(log.wl.startsWith(":")){
-				log.wl = log.wl.substring(1);
+				log.wl.substring(1);
 				sphereLine.parseLine();
 			}else if(log.wl.startsWith("ERROR:")){	//check for ERROR line
-				log.wl = log.wl.substring(6);
+				log.wl.substring(6);
 				messageLine.parseLine("ERROR");
 			}else if(log.wl.startsWith("DEBUG:")){	//check for DEBUG line
-				log.wl = log.wl.substring(6);
+				log.wl.substring(6);
 				messageLine.parseLine("DEBUG");
 			}else if(log.wl.startsWith("WARNING:")){	//check for WARNING line
-				log.wl = log.wl.substring(8);
+				log.wl.substring(8);
 				messageLine.parseLine("WARNING");
 			}else if(log.wl.startsWith("CRITICAL:")){	//check for CRITICAL line
-				log.wl = log.wl.substring(9);
+				log.wl.substring(9);
 				messageLine.parseLine("CRITICAL");
 			}else if(log.wl.startsWith("GM Page")){	//check for GM Page line
-				log.wl = log.wl.substring(7);
+				log.wl.substring(7);
 				pageParser.parseLine();
 			}else if(log.wl.startsWith("'")){	//check for ' line
 				sphereLine.parseLine();

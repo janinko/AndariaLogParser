@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class Log {
 	private BufferedReader in;
 	private String cline;
-	String wl;
+	WorkingLine wl;
 	private String nextline;
 	private int linenum;
 
@@ -26,21 +26,11 @@ public class Log {
 		return cline;
 	}
 
-	public String getUntil(String s){
-		int pos = 0;
-		while(!wl.startsWith(s, pos) && pos < wl.length()){
-			pos++;
-		}
-
-		String ret = wl.substring(0, pos);
-		wl = wl.substring(pos);
-		return ret;
-	}
-	
 	public String nextLine(){
 		if(hasNextLine()) linenum++;
 
 		cline = nextline;
+		wl = new WorkingLine(cline);
 		nextline = null;
 		return cline;
 	}

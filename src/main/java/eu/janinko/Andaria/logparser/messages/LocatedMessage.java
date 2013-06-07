@@ -7,7 +7,7 @@ public class LocatedMessage extends Message {
 	int posX, posY, posZ;
 	
 	
-	public LocatedMessage(Calendar c, String m, int posX, int posY, int posZ, MessageType t){
+	public LocatedMessage(Calendar c, CharSequence m, int posX, int posY, int posZ, MessageType t){
 		super(c,m,t);
 		if(!t.is(MessageType.Located)) throw new IllegalArgumentException("MessageType must be MessageType.Located, is " + t);
 		this.posX = posX;
