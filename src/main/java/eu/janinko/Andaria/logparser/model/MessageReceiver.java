@@ -1,4 +1,4 @@
-package eu.janinko.Andaria.logparser;
+package eu.janinko.Andaria.logparser.model;
 
 import eu.janinko.Andaria.logparser.messages.Message;
 

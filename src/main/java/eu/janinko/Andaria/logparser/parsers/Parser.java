@@ -1,11 +1,13 @@
-package eu.janinko.Andaria.logparser;
+package eu.janinko.Andaria.logparser.parsers;
+import eu.janinko.Andaria.logparser.InvalidPlayersState;
+import eu.janinko.Andaria.logparser.MessageSender;
+import eu.janinko.Andaria.logparser.MessageType;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,7 +51,7 @@ public class Parser {
 	}
 	
 	public void stop(){
-		sender.running = false;
+		sender.setRunning(false);
 	}
 	
 	

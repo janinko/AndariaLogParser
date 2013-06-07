@@ -1,5 +1,7 @@
 package eu.janinko.Andaria.logparser;
 
+import eu.janinko.Andaria.logparser.parsers.Parser;
+import eu.janinko.Andaria.logparser.model.Player;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -80,10 +82,10 @@ public class LogParser {
 		}
 		parser.stop();
 		
-		Set<Player> players = parser.sender.database.getPlayers();
+		Set<Player> players = parser.getSender().database.getPlayers();
 		Set<LocationTellerPlayer> moji = new HashSet<LocationTellerPlayer>();
 		for(Player pl : players){
-			if(uids.contains(pl.uid)){
+			if(uids.contains(pl.getUid())){
 				moji.add(new LocationTellerPlayer(pl));
 			}
 		}
@@ -97,7 +99,7 @@ public class LogParser {
 				System.out.println( (h<10 ? "0" : "") + h + ":" + 
 									(m<10 ? "0" : "") + m + ":" +
 									(s<10 ? "0" : "") + s + "\t" +
-								   ltp.name + "\t" + pos);
+								   ltp.getName() + "\t" + pos);
 			}
 			from.add(Calendar.SECOND, 1);
 		}

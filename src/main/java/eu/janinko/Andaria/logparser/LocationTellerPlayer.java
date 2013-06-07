@@ -1,5 +1,7 @@
 package eu.janinko.Andaria.logparser;
 
+import eu.janinko.Andaria.logparser.parsers.Parser;
+import eu.janinko.Andaria.logparser.model.Player;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
@@ -20,7 +22,7 @@ public class LocationTellerPlayer extends Player {
 	protected int lastIndex;
 	
 	public LocationTellerPlayer(Player p){
-		super(p.name, p.uid, p.acc);
+		super(p.getName(), p.getUid(), p.getAcc());
 		player = p;
 		lastTold = new GregorianCalendar(1,1,1);
 		lastIndex = -1;
@@ -35,11 +37,11 @@ public class LocationTellerPlayer extends Player {
 
 		
 		
-		while( idx < player.history.size() && 
-				c.compareTo(player.history.get(idx).getDateTime()) > 0){
+		while( idx < player.getHistory().size() &&
+				c.compareTo(player.getHistory().get(idx).getDateTime()) > 0){
 			
-			if(player.history.get(idx).getType().is(MessageType.Located)){
-				LocatedMessage lm = (LocatedMessage) player.history.get(idx);
+			if(player.getHistory().get(idx).getType().is(MessageType.Located)){
+				LocatedMessage lm = (LocatedMessage) player.getHistory().get(idx);
 				posX = lm.getPosX();
 				posY = lm.getPosY();
 				posZ = lm.getPosZ();
@@ -56,13 +58,13 @@ public class LocationTellerPlayer extends Player {
 			Parser p = new Parser("sphere2012-04-06:201.log");
 			p.parse();
 			
-			Set<Player> players = p.sender.database.getPlayers();
+			Set<Player> players = p.getSender().database.getPlayers();
 
 			Set<LocationTellerPlayer> moji = new HashSet<LocationTellerPlayer>();
 			
 			for(Player pl : players){
-				if(pl.uid == 0x307fd || 
-				   pl.uid == 0x257e4){
+				if(pl.getUid() == 0x307fd ||
+				   pl.getUid() == 0x257e4){
 					moji.add(new LocationTellerPlayer(pl));
 				}
 			}

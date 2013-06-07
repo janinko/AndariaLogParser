@@ -3,7 +3,7 @@ package eu.janinko.Andaria.logparser.tests;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import eu.janinko.Andaria.logparser.Player;
+import eu.janinko.Andaria.logparser.model.Player;
 import eu.janinko.Andaria.logparser.PlayersDB;
 
 public class PlayersDBTest {

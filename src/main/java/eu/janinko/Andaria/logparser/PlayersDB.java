@@ -1,5 +1,7 @@
 package eu.janinko.Andaria.logparser;
 
+import eu.janinko.Andaria.logparser.model.Player;
+import eu.janinko.Andaria.logparser.model.Account;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

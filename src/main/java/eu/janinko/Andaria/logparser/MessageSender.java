@@ -1,5 +1,7 @@
 package eu.janinko.Andaria.logparser;
 
+import eu.janinko.Andaria.logparser.model.Player;
+import eu.janinko.Andaria.logparser.model.Account;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
@@ -7,6 +9,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import eu.janinko.Andaria.logparser.messages.Message;
+
+
 
 public class MessageSender implements Runnable {
 	//private HashMap<String, Player> byName;
@@ -479,11 +483,13 @@ public class MessageSender implements Runnable {
 		}
 		
 	}
+
+	public void setRunning(boolean b) {
+		this.running = b;
+	}
 	
 
 }
-
-
 class PlayersFunctionCall{
 	String name;
 	Integer uid;

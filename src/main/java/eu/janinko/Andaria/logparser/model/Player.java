@@ -1,5 +1,7 @@
-package eu.janinko.Andaria.logparser;
+package eu.janinko.Andaria.logparser.model;
 
+import eu.janinko.Andaria.logparser.model.Account;
+import eu.janinko.Andaria.logparser.model.MessageReceiver;
 import java.util.ArrayList;
 
 import eu.janinko.Andaria.logparser.messages.LocatedMessage;
@@ -96,6 +98,14 @@ public class Player implements MessageReceiver {
 	}
 	public Account getAcc() {
 		return acc;
+	}
+
+	public ArrayList<Message> getHistory() {
+		return history;
+	}
+
+	public void setHistory(ArrayList<Message> history) {
+		this.history = history;
 	}
 	
 }
