@@ -75,4 +75,8 @@ public class WorkingLine implements CharSequence{
 	int codePointAt(int index) {
 		return wl.codePointAt(index);
 	}
+
+	public boolean equals(String str){
+		return wl.equals(str);
+	}
 }

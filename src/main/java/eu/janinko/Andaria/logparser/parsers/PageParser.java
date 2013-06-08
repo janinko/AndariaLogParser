@@ -1,7 +1,6 @@
 package eu.janinko.Andaria.logparser.parsers;
 
 import eu.janinko.Andaria.logparser.MessageSender;
-import java.util.Calendar;
 
 /**
  *
@@ -10,9 +9,6 @@ import java.util.Calendar;
 public class PageParser implements Parser{
 	private Log log;
 	private MessageSender sender;
-
-	private Calendar c; // REMOVE!!
-
 
 	public PageParser(Log log, MessageSender sender) {
 		this.log = log;

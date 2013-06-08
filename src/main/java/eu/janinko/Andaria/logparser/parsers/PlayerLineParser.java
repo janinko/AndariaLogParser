@@ -1,7 +1,6 @@
 package eu.janinko.Andaria.logparser.parsers;
 
 import eu.janinko.Andaria.logparser.MessageSender;
-import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,8 +12,6 @@ public class PlayerLineParser implements Parser{
 
 	private Log log;
 	private MessageSender sender;
-
-	private Calendar c; // REMOVE!!
 
 	public PlayerLineParser(Log log, MessageSender sender) {
 		this.log = log;

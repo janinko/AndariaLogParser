@@ -1,7 +1,5 @@
 package eu.janinko.Andaria.logparser.parsers;
 
-import eu.janinko.Andaria.logparser.MessageSender;
-import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,8 +10,6 @@ import java.util.regex.Pattern;
 public class AccountLineParser implements Parser{
 
 	private Log log;
-
-	private Calendar c; // REMOVE!!
 
 	public AccountLineParser(Log log) {
 		this.log = log;

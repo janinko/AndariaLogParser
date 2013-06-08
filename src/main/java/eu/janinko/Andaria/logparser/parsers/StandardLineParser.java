@@ -4,7 +4,6 @@ import eu.janinko.Andaria.logparser.MessageSender;
 import eu.janinko.Andaria.logparser.MessageType;
 import eu.janinko.Andaria.logparser.messages.LocatedMessage;
 import eu.janinko.Andaria.logparser.messages.Message;
-import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,12 +15,12 @@ public class StandardLineParser implements Parser{
 
 	private Log log;
 	private MessageSender sender;
-	
-	private Calendar c; // REMOVE!!
+	private TimeParser timeParser;
 
-	public StandardLineParser(Log log, MessageSender sender) {
+	public StandardLineParser(Log log, MessageSender sender, TimeParser timeParser) {
 		this.log = log;
 		this.sender = sender;
+		this.timeParser = timeParser;
 	}
 
 
@@ -167,105 +166,105 @@ public class StandardLineParser implements Parser{
 		log.wl.substring(1);
 
 		if(log.wl.startsWith("Drp_Itm ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Drp_Gr ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Pck_Pack ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Pck_Gr ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("DEKORATER: ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("KOS: ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Use ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("- spravne heslo - ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("- Zmena hesla na ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("otevrel zabezpecenou nadobu ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("pokus otevrit zabezpecenou nadobu ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("prevedl vlastnictvi zabezpecene nadoby ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("EqTest ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("UnEq ")){
 			if(log.wl.startsWith("UnEq Pamet promen ") || log.wl.startsWith("UnEq metamorfoza ")){
 				sender.rename(uid,name);
 			}
 
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Mount ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("DisMount ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("SpEff_New ")){
 			// TODO
 		}else if(log.wl.startsWith("SpEff ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("+ ")){
 			// TODO
 		}else if(log.wl.startsWith("Hit ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("GHit ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Killed ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("U_CntMnu ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Ability ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.equals("pouziva HELP ROOM")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("skillgain ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.matches("Sk[SF][tua] .*")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.equals("-> OdLogZona")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,0,0,0,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,0,0,0,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("LogIn ")){
-			sender.sendMessage(name, uid, acc, new Message(c,log.wl,MessageType.AT));
+			sender.sendMessage(name, uid, acc, new Message(timeParser.getCalendar(),log.wl,MessageType.AT));
 			// TODO
 		}else if(log.wl.startsWith("LogOut ")){
-			sender.sendMessage(name, uid, acc, new Message(c,log.wl,MessageType.AT));
+			sender.sendMessage(name, uid, acc, new Message(timeParser.getCalendar(),log.wl,MessageType.AT));
 			// TODO
 		}else if(log.wl.contains("AAFKK")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("check_num ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Bankovni ucet ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("Incognito: ")){
 			log.wl.substring(11);
@@ -282,15 +281,15 @@ public class StandardLineParser implements Parser{
 			if(log.wl.length() == 0){
 				throwAway(); return;
 			}
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,t));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,t));
 		}else if(log.wl.startsWith("Opravuje ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("GuildSystem: ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else if(log.wl.startsWith("prelevani ")){
-			sender.sendMessage(name, uid, acc, new LocatedMessage(c,log.wl,posX,posY,posZ,MessageType.Located));
+			sender.sendMessage(name, uid, acc, new LocatedMessage(timeParser.getCalendar(),log.wl,posX,posY,posZ,MessageType.Located));
 			// TODO
 		}else{
 			log.unknownLine("parseStandartLinePreparsed"); return;
