@@ -11,7 +11,7 @@ public class WorkingLine implements CharSequence{
 		this.wl = wl;
 	}
 
-	public String getUntil(String s){
+	public String getUntilAndKeep(String s){
 		int pos = 0;
 		while(!wl.startsWith(s, pos) && pos < wl.length()){
 			pos++;
@@ -19,6 +19,12 @@ public class WorkingLine implements CharSequence{
 
 		String ret = wl.substring(0, pos);
 		wl = wl.substring(pos);
+		return ret;
+	}
+
+	public String getUntil(String s){
+		String ret = getUntilAndKeep(s);
+		wl = wl.substring(s.length());
 		return ret;
 	}
 

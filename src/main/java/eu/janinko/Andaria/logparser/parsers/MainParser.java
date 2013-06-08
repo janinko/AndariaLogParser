@@ -23,7 +23,7 @@ public class MainParser implements Parser{
 	
 	public static void main(String[] args){		
 		try {
-			MainParser p = new MainParser(new FileReader("sphere2012-03-19.log"));
+			MainParser p = new MainParser(new FileReader("sphere2013-06-05.log"));
 			p.start();
 			p.parse();
 			
@@ -79,6 +79,10 @@ public class MainParser implements Parser{
 			if(log.wl.startsWith(" POZOR ")){
 				log.wl.substring(7);
 				messageLine.parseLine("POZOR");
+			}else if(log.wl.startsWith(" MySql:")){
+				return;// TODO
+			}else if(log.wl.startsWith(" -----")){
+				return;// TODO
 			}else if(log.wl.startsWith(" ")){
 				log.wl.substring(1);
 				standardLine.parseLine();

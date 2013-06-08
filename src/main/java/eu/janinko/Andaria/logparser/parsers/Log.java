@@ -52,12 +52,18 @@ public class Log {
 
 
 	public void unknownLine(){
-		unknownLine("");
+		_unknownLine("");
 	}
 
 	public void unknownLine(String message){
+		_unknownLine(message);
+	}
+
+	private void _unknownLine(String message){
 		if(message.equals("Too short!")) return;
-		System.err.println("Unknown input, line " + linenum +":  " + message);
+		StackTraceElement[] st = new Throwable().getStackTrace();
+		String where = st[2].getClassName()+ "#" + st[2].getMethodName() + " : " +  st[2].getLineNumber();
+		System.err.println("Unknown input, line " + linenum +":  " + message + " (" + where + ")");
 		System.err.println(cline);
 		if(!Objects.equals(cline, wl)){
 			for(int i=wl.length(), j=cline.length(); i<j; i++){

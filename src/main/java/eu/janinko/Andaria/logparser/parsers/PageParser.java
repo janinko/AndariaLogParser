@@ -17,7 +17,6 @@ public class PageParser implements Parser{
 
 	@Override
 	public void parseLine() {
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 }

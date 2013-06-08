@@ -98,18 +98,18 @@ public class SphereLineParser implements Parser{
 		String message = sb.toString();
 		log.wl.substring(pos);pos = 0;
 
-		if(log.wl.matches(" mode=[0-9]")){
+		if(log.wl.matches(" mode=[0-9]+")){
 			sender.sendMessage(name, null,null, new Message(timeParser.getCalendar(),message,MessageType.PlayerSays));
-		}else if(log.wl.matches(" mode=[0-9] \\(muted\\)")){
+		}else if(log.wl.matches(" mode=[0-9]+ \\(muted\\)")){
 			sender.sendMessage(name, null,null, new Message(timeParser.getCalendar(),message,MessageType.PlayerSaysMuted));
-		}else if(log.wl.matches(" mode=[0-9].*")){
-			log.unknownLine("parseSaysLine"); return;
+		}else if(log.wl.matches(" mode=[0-9]+.*")){
+			log.unknownLine("parseSaysLine");
 		}else if(log.wl.matches(" in party to 'all'")){
 			sender.sendMessage(name, null,null, new Message(timeParser.getCalendar(),message,MessageType.PlayerSaysParty));
 		}else if(log.wl.matches(" in party to '.*")){
 			//TODO
 		}else{
-			log.unknownLine("parseSaysLine"); return;
+			log.unknownLine("parseSaysLine");
 		}
 
 	}
@@ -131,12 +131,10 @@ public class SphereLineParser implements Parser{
 		boolean typeb;
 		if(log.wl.contains("commands")){
 			acc = log.wl.getUntil("' commands ");
-			log.wl.substring(10);
 			type = MessageType.Command;
 			typeb=false;
 		}else{
 			acc = log.wl.getUntil("' tweak ");//TODO odlisit command a tweak?
-			log.wl.substring(7);
 			type = MessageType.Tweak;
 			typeb=true;
 		}
@@ -147,21 +145,19 @@ public class SphereLineParser implements Parser{
 		}else if(match_clUIDMMAND.reset(log.wl).matches()){
 			log.wl.substring(4);
 			String uid = log.wl.getUntil(" (");
-			log.wl.substring(1);
 			String name = log.wl.getUntil(") ");
-			command=log.wl.toString().substring(5).replaceFirst("'=[01]$", "");
+			command=log.wl.toString().substring(4).replaceFirst("'=[01]$", "");
 			sender.sendMessage(null, null, acc, new TargetedCommand(timeParser.getCalendar(),command,Integer.parseInt(uid,16),name,0,typeb));
 		}else if(match_clAMOUNTCOMMAND.reset(log.wl).matches()){
 			log.wl.substring(4);
 			String uid = log.wl.getUntil(" (");
-			log.wl.substring(1);
 			String name = log.wl.getUntil(") ");
-			log.wl.substring(9);
+			log.wl.substring(8);
 			String amount = log.wl.getUntil("] ");
-			command=log.wl.toString().substring(5).replaceFirst("'=[01]$", "");
+			command=log.wl.toString().substring(4).replaceFirst("'=[01]$", "");
 			sender.sendMessage(null, null, acc, new TargetedCommand(timeParser.getCalendar(),command,Integer.parseInt(uid,16),name,Integer.parseInt(amount),typeb));
 		}else{
-			log.unknownLine("parseSaysLine"); return;
+			log.unknownLine("parseSaysLine");
 		}
 	}
 

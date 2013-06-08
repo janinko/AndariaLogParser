@@ -13,11 +13,9 @@ public class MessageLineParser implements Parser{
 
 	@Override
 	public void parseLine() {
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	public void parseLine(String s) {
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 }
