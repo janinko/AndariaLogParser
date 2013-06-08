@@ -71,4 +71,8 @@ public class WorkingLine implements CharSequence{
 	public String toString() {
 		return wl;
 	}
+
+	int codePointAt(int index) {
+		return wl.codePointAt(index);
+	}
 }

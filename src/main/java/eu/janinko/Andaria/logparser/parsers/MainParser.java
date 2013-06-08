@@ -12,9 +12,7 @@ import java.util.regex.Pattern;
 
 public class MainParser implements Parser{
 	private Log log;
-	MessageSender sender;
-	String oline;
-	String line;
+	private MessageSender sender;
 
 	private MessageLineParser messageLine;
 	private SphereLineParser sphereLine;
@@ -79,7 +77,7 @@ public class MainParser implements Parser{
 		try{
 			parseTime();
 			
-			if(line.startsWith(" POZOR ")){
+			if(log.wl.startsWith(" POZOR ")){
 				log.wl.substring(7);
 				messageLine.parseLine("POZOR");
 			}else if(log.wl.startsWith(" ")){
@@ -109,7 +107,7 @@ public class MainParser implements Parser{
 				playerLine.parseLine();
 			}else if(log.wl.startsWith("A'")){	//check for Account line
 				accountLine.parseLine();
-			}else if(match_lSAVE.reset(line).matches()){	//check for SAVE line
+			}else if(match_lSAVE.reset(log.wl).matches()){	//check for SAVE line
 				return;
 			}else{
 				log.unknownLine();
@@ -130,10 +128,10 @@ public class MainParser implements Parser{
 	private void parseTime() {
 		
 		// firstline date
-		if(match_tFIRSTLINE.reset(line).matches()){
-			int year=line.codePointAt(0)*1000 + line.codePointAt(1)*100 + line.codePointAt(2)*10 + line.codePointAt(3) - '0'*1111 ;
-			int month=line.codePointAt(5)*10+line.codePointAt(6) - '0'*11;
-			int day=line.codePointAt(8)*10+line.codePointAt(9) - '0'*11;
+		if(match_tFIRSTLINE.reset(log.wl).matches()){
+			int year=log.wl.codePointAt(0)*1000 + log.wl.codePointAt(1)*100 + log.wl.codePointAt(2)*10 + log.wl.codePointAt(3) - '0'*1111 ;
+			int month=log.wl.codePointAt(5)*10+log.wl.codePointAt(6) - '0'*11;
+			int day=log.wl.codePointAt(8)*10+log.wl.codePointAt(9) - '0'*11;
 			
 			if(c == null){
 				c = new GregorianCalendar(year, month-1,day, 0, 0);
@@ -141,7 +139,7 @@ public class MainParser implements Parser{
 				log.unknownLine("Wrong date: " + year + "-" + month + "-" + day + " x "
 			                 + c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH));
 			}
-			line = line.substring(19);
+			log.wl.substring(19);
 		}
 		
 		int hour = -1;
@@ -149,33 +147,33 @@ public class MainParser implements Parser{
 		int second = -1;
 	
 		// chceck hour and minute
-		if(match_tHOURMINUTE.reset(line).matches()){	//check time format
-			hour=line.codePointAt(0)*10+line.codePointAt(1) - '0'*11;
-			minute=line.codePointAt(3)*10+line.codePointAt(4) - '0'*11;
-			line = line.substring(6);
+		if(match_tHOURMINUTE.reset(log.wl).matches()){	//check time format
+			hour=log.wl.codePointAt(0)*10+log.wl.codePointAt(1) - '0'*11;
+			minute=log.wl.codePointAt(3)*10+log.wl.codePointAt(4) - '0'*11;
+			log.wl.substring(6);
 		}else{
 			log.unknownLine("Wrong time format");
 		}
 
 		// check for (*.scp,123) substr and remove if present
-		if(match_tSCRIPTNAME.reset(line).matches()){
-			line = line.replaceFirst("\\([a-zA-Z_-]+\\.scp,[0-9]+\\)", "");
+		if(match_tSCRIPTNAME.reset(log.wl).matches()){
+			log.wl.replaceFirst("\\([a-zA-Z_-]+\\.scp,[0-9]+\\)", "");
 		}
 		
 		// check for seconds
-		if(match_tSECONDS.reset(line).matches()){
-			second=line.charAt(0) - '0';
+		if(match_tSECONDS.reset(log.wl).matches()){
+			second=log.wl.charAt(0) - '0';
 			
-			if(line.charAt(1) >= '0' && line.charAt(1) <= '9'){
+			if(log.wl.charAt(1) >= '0' && log.wl.charAt(1) <= '9'){
 				second*=10;
-				second+=line.charAt(1) - '0';
-				line = line.substring(3);
+				second+=log.wl.charAt(1) - '0';
+				log.wl.substring(3);
 			}else{
-				line = line.substring(2);
+				log.wl.substring(2);
 			}
 		} //check if there are the weird stuff
-		else if(match_tWEIRDSTUFF.reset(line).matches()){
-			line = line.substring(3);
+		else if(match_tWEIRDSTUFF.reset(log.wl).matches()){
+			log.wl.substring(3);
 		}
 		
 		setTime(hour, minute, second);
